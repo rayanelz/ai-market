@@ -2920,7 +2920,7 @@ const ph=d=>`<span class="ph"><i>${esc(ini(d[0]))}</i><img loading="lazy" alt=""
 document.addEventListener('error',e=>{const t=e.target;if(t.tagName!=='IMG'||!t.closest('.ph'))return;if(t.dataset.alt&&t.dataset.alt!==t.getAttribute('src')){t.src=t.dataset.alt;t.dataset.alt=''}else t.remove()},true);
 function filtered(){
   const q=norm($('q').value.trim()),t=$('type').value,s=$('sort').value,mr=+$('rat').value,src=$('src').value;
-  let r=data.filter(d=>(!t||d[2]===t)&&d[1]>=mr&&(!src||d[7]===src)&&(!q||d._n.includes(q)));
+  let r=data.filter(d=>(!t||d[2]===t)&&(!mr||d[1]===mr)&&(!src||d[7]===src)&&(!q||d._n.includes(q)));
   if(view==='table'&&tSort){const[i,dir]=tSort;r.sort((a,b)=>{const x=a[i],y=b[i];if(x==null)return 1;if(y==null)return -1;return (typeof x==='string'?x.localeCompare(y):x-y)*dir})}
   else{const f={'price-desc':(a,b)=>b[5]-a[5]||b[1]-a[1],'price-asc':(a,b)=>a[5]-b[5]||a[1]-b[1],'rating-desc':(a,b)=>b[1]-a[1]||b[5]-a[5],'rating-asc':(a,b)=>a[1]-b[1]||a[5]-b[5],'name-asc':(a,b)=>a[0].localeCompare(b[0])||b[1]-a[1]}[s];r.sort(f)}
   return r;
