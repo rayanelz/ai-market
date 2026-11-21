@@ -2955,10 +2955,9 @@ function render(){
   else out.innerHTML=`<div class="scroll"><table><thead><tr>${COLS.map(([l,i,n])=>{const on=tSort&&tSort[0]===i;return `<th data-i="${i}" data-n="${n}" class="${n?'n':''}${on?' on':''}">${l}${on?(tSort[1]>0?' ▲':' ▼'):''}</th>`}).join('')}</tr></thead><tbody>${part.map(row).join('')}</tbody></table></div>${more}`;
 }
 function figs(){
-  const p=data.map(d=>d[5]).sort((a,b)=>a-b),med=p[Math.floor(p.length/2)];
   const top=data.reduce((a,b)=>b[5]>a[5]?b:a);
   const live=data.filter(d=>d[10]>0).length;
-  $('figs').innerHTML=[[fmt(data.length),'cards listed'],[fmt(top[5]),`top price · ${esc(top[0])}`],[fmt(med),'median reference price'],[fmt(live),'with an active AI listing']].map(([b,s])=>`<div class="fig1"><b>${b}</b><span>${s}</span></div>`).join('');
+  $('figs').innerHTML=[[fmt(data.length),'cards listed'],[fmt(top[5]),`top price · ${esc(top[0])}`],[fmt(live),'with an active AI listing']].map(([b,s])=>`<div class="fig1"><b>${b}</b><span>${s}</span></div>`).join('');
 }
 const reset=()=>{shown=view==='table'?100:60;render()};
 const setView=v=>{view=v;$('vCards').setAttribute('aria-pressed',v==='cards');$('vTable').setAttribute('aria-pressed',v==='table');reset()};
